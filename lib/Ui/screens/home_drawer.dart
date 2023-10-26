@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
+
 import 'package:hive/hive.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class home_drawer extends StatelessWidget {
@@ -25,7 +25,7 @@ class home_drawer extends StatelessWidget {
               ),),),
 
           ListTile(
-            title: Text(localize!.language),
+            title: Text(localize.language),
             trailing: DropdownButton<String>(
               value: testBox.get("languageValue" , defaultValue: "en"),
               items:<String>["en", "ar" , "fa"]

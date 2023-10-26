@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'package:task_2/Ui/screens/home_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../data/api/api.dart';
 import '../../utils/routing constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,6 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("home screen");
+    final api = Api() ;
     final localize = AppLocalizations.of(context)!;
     return  Scaffold(
       appBar: AppBar(
@@ -36,6 +38,10 @@ class HomePage extends StatelessWidget {
           )
         ],      ),
       drawer: const home_drawer(),
+      floatingActionButton:
+      FloatingActionButton(onPressed: () {
+        api.fetchPhotos(DateTime.now());
+      }, child: const Icon(Icons.abc)),
 
     );
   }
