@@ -11,16 +11,16 @@ class Api{
   Api(){
     dio = Dio(
       BaseOptions(
-        connectTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 10),
+        connectTimeout: const Duration(seconds: 20),
+        receiveTimeout: const Duration(seconds: 20),
         receiveDataWhenStatusError: true ,
       ),
     );
-   /* dio.interceptors.add(
+    dio.interceptors.add(
       RetryInterceptor(dio: dio,
       logPrint: log ,
         retries: 3,
-        retryDelays: const[
+          retryDelays:const[
           Duration(seconds: 1),
           Duration(seconds: 3),
           Duration(seconds: 5) ,
@@ -31,26 +31,24 @@ class Api{
         }
 
       )
-    );*/
-    apiKey = "AIzaSyAM0xEIGzrwKkZzJmx6txx_9tjFCB5kvFM" ;
+    );
+    apiKey = "4Habfg5pVY2wzyBgaPSp1f5qfdV8jp6K1BWKFBKK" ;
     baseUrl ="https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos";
   }
 
 
-  Future<List<Map<String , double>?>>fetchPhotos(DateTime earthDate)async{
+  Future<List<dynamic>>fetchPhotos(String earthDate)async{
     try{
       Response response = await dio.request(
           baseUrl ,
           options: Options(method: "get") ,
           queryParameters: {
-            "earth_date": DateTime.now().toString(),
+            "earth_date": earthDate,
             "api_key": apiKey
           }
       );
-      debugPrint(response.statusCode.toString()) ;
-      debugPrint(earthDate.toString()) ;
-      debugPrint(response.data.toString());
-      return response.data["photos"].cast<Map<String ,double>?>();
+      debugPrint("Status code is : ${response.statusCode}") ;
+      return response.data["photos"] ;
     }catch(e){
       if(e is DioException){
         debugPrint("dio error ${e.message}");

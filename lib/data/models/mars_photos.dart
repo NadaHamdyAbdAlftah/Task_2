@@ -11,9 +11,11 @@ class Mars_photo {
   @HiveField(2)
   final Camera camera;
   @HiveField(3)
+  @JsonKey(name:"img_src")
   final String imgSrc;
   @HiveField(4)
-  final String earthDate;
+  @JsonKey(name: "earth_date" ,fromJson: _fromDate)
+  final DateTime earthDate;
 
 
   Mars_photo({
@@ -25,23 +27,26 @@ class Mars_photo {
   });
   factory Mars_photo.fromJson(Map<String,dynamic>json)=>
       _$Mars_photoFromJson(json) ;
-
+  static DateTime _fromDate(String earthDate){
+    return DateTime.parse(earthDate);
+  }
 
 }
-@JsonSerializable(createToJson: false)
 @HiveType(typeId: 1)
+@JsonSerializable(createToJson: false)
 class Camera {
   @HiveField(0)
   final int id;
   @HiveField(1)
   final String name;
   @HiveField(2)
-  final int roverId;
-  @HiveField(3)
+  @JsonKey(name: "full_name")
   final String fullName;
 
-  Camera({required this.id, required this.name,
-    required this.roverId, required this.fullName});
+  Camera({
+    required this.id,
+    required this.name,
+    required this.fullName});
 factory Camera.fromJson(Map<String , dynamic>json)=>_$CameraFromJson(json) ;
 
 

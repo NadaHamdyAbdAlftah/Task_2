@@ -9,14 +9,14 @@ class AppRouter {
     initialLocation: "/",
       routes: <RouteBase>[
         GoRoute(path: '/',
-          builder: (context, state)=>const HomePage()
+          builder: (context, state)=> const HomePage()
         ),
         GoRoute(path: nasaNews,
             builder: (context, state)=>const news()
         ),],
 
         errorBuilder: (context, state) {
-          return const HomePage();
+          return  const HomePage();
         },
 
       );
