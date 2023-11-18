@@ -47,13 +47,8 @@ class Camera {
     required this.id,
     required this.name,
     required this.fullName});
+
 factory Camera.fromJson(Map<String , dynamic>json)=>_$CameraFromJson(json) ;
-
-
-  static _toCapital<String>(data){
-    return data.toUpperCase() ;
-  }
-
 }
 
 

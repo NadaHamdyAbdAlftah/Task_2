@@ -15,9 +15,5 @@ class AppRouter {
             builder: (context, state)=>const news()
         ),],
 
-        errorBuilder: (context, state) {
-          return  const HomePage();
-        },
-
       );
 }

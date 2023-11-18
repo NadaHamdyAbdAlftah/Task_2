@@ -8,7 +8,6 @@ class home_drawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("homeDrower screen");
     Box testBox = Hive.box("testBox") ;
     final localize = AppLocalizations.of(context) ;
     return Drawer(
